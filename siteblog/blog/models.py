@@ -1,3 +1,4 @@
+from django.urls import reverse
 from distutils.command.upload import upload
 from msilib.schema import Class
 from unicodedata import category
@@ -22,6 +23,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'slug': self.slug})
 
     class Meta:
         ordering = ['title']
